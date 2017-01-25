@@ -1,8 +1,5 @@
 # react-dynamic-form
-It's a very simple minimal feature react.js form using bootstrap,
-It's a configurable, functional table component that allows you build a Bootstrap Table more efficiency and easy in your React application.
-react-dynamic-form supports these features:
-- Simple CRUD API
+A Simple But yet highly Dynamic Form with React and Bootstrap
 
 
 ![Example](http://i.imgur.com/Md4mnFp.png)
@@ -25,36 +22,6 @@ import ListGrid from "react-dynamic-form";
 
 // or in ECMAScript 5
 var ListGrid = require('react-dynamic-form');
-```
-
-
-### Quick Demo
-```js
-// Define the Table Columns
-var tableConfig = {
-    columns: [
-        {name: "id", title: "Index", type: "text",},
-        {name: "name", title: "Name", type: "text"},
-        {name: "label", title: "Attribute", type: "text"},
-        {name: "valueField", title: "Random Word", type: "text"}
-    ],
-    primaryKey: "id",
-};
-// Define the Table Data
-var tableData = [
-    {id: 0, name: "Kasasa", label: "blessed", valueField: "Foo bar0"},
-    {id: 1, name: "Timothy", label: "favored", valueField: "Foo bar1"},
-    {id: 2, name: "Emmanuel", label: "loved", valueField: "Foo bar2"},
-    {id: 3, name: "Beloved", label: "desired", valueField: "Foo bar3"},
-    {id: 4, name: "Alex", label: "all", valueField: "Foo bar0"},
-    {id: 5, name: "Wamono", label: "things", valueField: "Foo bar1"},
-    {id: 6, name: "Kent", label: "are", valueField: "Foo bar2"}
-];
-
-//Render as react Component
-React.render(
-        <ListGrid config={tableConfig} data={tableData} isPaged={true}/>, document.getElementById("app")
-);
 ```
 
 
