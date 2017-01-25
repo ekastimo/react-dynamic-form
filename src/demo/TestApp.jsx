@@ -7,10 +7,11 @@ export default class TestApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tableConfig: DATA.tableConfig,
-            tableData: [...DATA.tableData]
+            formConfig: DATA.formConfig,
+            //formData: [...DATA.formData]
         };
         this.dataGrid = undefined;
+        console.log("Creted Test App");
     }
 
     createButtons() {
@@ -41,7 +42,7 @@ export default class TestApp extends React.Component {
     onRefreshClicked() {
         console.log("Refresh Clicked...");
         //TODO Fetch new Data from server or whatever
-        this.dataGrid.setNewRecords(DATA.tableData);
+        this.dataGrid.setNewRecords(DATA.formData);
     }
 
     onNewClicked() {
@@ -84,8 +85,13 @@ export default class TestApp extends React.Component {
                 padding: 5,
             }}>
                 <DynamicForm
-                    config={this.state.tableConfig}
-                    data={this.state.tableData}
+                    config={this.state.formConfig}
+                    data={this.state.formData}
+                    controls={
+                        <button type="button" className="btn btn-default">
+                            <span className="glyphicon glyphicon-redo"/>&nbsp;Cancel
+                        </button>
+                    }
                 />
             </div>
         )

@@ -1,8 +1,8 @@
 {
   "name": "react-dynamic-form",
-  "version": "1.0.3",
-  "description": "List Grid in React",
-  "main": "dist/ListGrid.js",
+  "version": "1.0.0",
+  "description": "A Simple But yet highly Dynamic Form with React and Bootstrap",
+  "main": "dist/DynamicForm.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ekastimo/react-dynamic-form.git"
@@ -31,12 +31,15 @@
     "test:watch": "mocha --compilers js:babel-core/register --colors -w ./test/*.spec.js"
   },
   "dependencies": {
-
+    "react": "~0.14.8 || ^15.0.0",
+    "react-dom": "~0.14.8 || ^15.0.0",
+    "bootstrap": "^3.3.7",
+    "react-datetime": "^2.6.0",
+    "moment": "^2.15.1"
   },
   "peerDependencies": {
     "react": "~0.14.8 || ^15.0.0",
-    "react-dom": "~0.14.8 || ^15.0.0",
-    "react-js-pagination": "^2.0.2"
+    "react-dom": "~0.14.8 || ^15.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
@@ -68,10 +71,6 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2",
-    "yargs": "^6.6.0",
-    "bootstrap": "^3.3.7",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
-    "react-js-pagination": "^2.0.2"
+    "yargs": "^6.6.0"
   }
 }

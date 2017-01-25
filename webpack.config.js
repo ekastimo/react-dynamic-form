@@ -4,7 +4,7 @@ const webpack = require('webpack');
 const env = require('yargs').argv.mode;
 console.log("Environment", env);
 const debug = (env === 'dev');
-const libraryName = 'ListGrid';
+const libraryName = 'DynamicForm';
 let outputFile;
 
 if (env === 'build') {

@@ -11,7 +11,6 @@ module.exports = {
         port: 8000
     },
     entry: './src/demo/index.jsx',
-    devtool: 'source-map',
     output:
         {path: "./dev/", publicPath: "/assets/", filename: 'app.bundle.js'}
        ,
