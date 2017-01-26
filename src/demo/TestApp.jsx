@@ -8,72 +8,52 @@ export default class TestApp extends React.Component {
         super(props);
         this.state = {
             formConfig: DATA.formConfig,
-            //formData: [...DATA.formData]
         };
-        this.dataGrid = undefined;
+        this.boundForm = undefined;
         console.log("Creted Test App");
     }
 
     createButtons() {
         return [
             <button type="button" className="btn btn-default btn-sm" key="refresh"
-                    onClick={this.onRefreshClicked.bind(this)}>
+                    onClick={this.onSetDataClicked.bind(this)}>
                 <span className="glyphicon glyphicon-refresh"/>
-                &nbsp;Refresh
-            </button>,
-            <button type="button" className="btn btn-default btn-sm" key="new"
-                    onClick={this.onNewClicked.bind(this)}>
-                <span className="glyphicon glyphicon-plus"/>
-                &nbsp;New
-            </button>,
-            <button type="button" className="btn btn-default btn-sm" key="edit"
-                    onClick={this.onEditClicked.bind(this)}>
-                <span className="glyphicon glyphicon-pencil"/>
-                &nbsp;Edit
-            </button>,
-            <button type="button" className="btn btn-default btn-sm" key="delete"
-                    onClick={this.onDeleteClicked.bind(this)}>
-                <span className="glyphicon glyphicon-trash"/>
-                &nbsp;Delete
+                &nbsp;SetData
             </button>
         ]
     }
 
-    onRefreshClicked() {
+    onSetDataClicked() {
         console.log("Refresh Clicked...");
         //TODO Fetch new Data from server or whatever
-        this.dataGrid.setNewRecords(DATA.formData);
-    }
-
-    onNewClicked() {
         let id = Math.floor((Math.random() * 1000) + 1);
-        let data = {id: id, name: "newName" + id, label: "desired" + id, valueField: "Foo barz" + id};
-        //TODO Add to server or whatever
-        this.dataGrid.addRecord(data);
+        let data = {
+            id: id,
+            username: "newName",
+            level: "staff",
+            creator: "Foo barz",
+            creationDate: "2017-01-26"
+        };
+        this.boundForm.setData(data);
     }
 
-    onEditClicked() {
-        console.log("Edit Clicked");
-        const recs = this.dataGrid.getSelectedRecords();
-        if (recs.length !== 1) {
-            alert("Please select one record to edit");
-            return;
+    onGetDataClicked() {
+        let data = this.boundForm.getData();
+        if (data) {
+            console.log("Data>>>", data);
+        } else {
+            console.log("Data Contains Errors...");
         }
-        let editedRec = {...recs[0],name: "Edited_newName", label: "Edited_desired"};
-        //TODO Delete from server or whatever, do not edit ID
-        this.dataGrid.editRecord(editedRec);
     }
 
-
-    onDeleteClicked() {
-        console.log("Delete Clicked..");
-        const recs = this.dataGrid.getSelectedRecords();
-        if (recs.length !== 1) {
-            alert("Please select one record to edit");
-            return;
+    onSaveClicked() {
+        console.log("SAve Clicked...");
+        let data = this.boundForm.getData();
+        if (data) {
+            console.log("Data>>>", data);
+        } else {
+            console.log("Data Contains Errors...");
         }
-        //TODO Delete from server or whatever
-        this.dataGrid.deleteRecord(recs[0]);
     }
 
 
@@ -84,14 +64,19 @@ export default class TestApp extends React.Component {
                 height: "100%",
                 padding: 5,
             }}>
+                {this.createButtons()}
+                <br/><br/>
                 <DynamicForm
                     config={this.state.formConfig}
-                    data={this.state.formData}
                     controls={
                         <button type="button" className="btn btn-default">
                             <span className="glyphicon glyphicon-redo"/>&nbsp;Cancel
                         </button>
                     }
+                    ref={(form) => {
+                        this.boundForm = form;
+                    }}
+                    onSaveClicked={this.onSaveClicked.bind(this)}
                 />
             </div>
         )

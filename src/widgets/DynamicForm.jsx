@@ -30,31 +30,51 @@ export default class DynamicForm extends React.Component {
     componentWillReceiveProps(props) {
 
     }
-    onSaveButtonClicked() {
+
+    setData(data){
+        const  items = this.items;
+        for(let key in items){
+            if (items.hasOwnProperty(key)){
+                let item = items[key];
+                item.setValue(data[key]);
+            }
+        }
+    }
+
+    getData(){
         const  items = this.items;
         const data = {};
-        for(let key in this.items){
+        for(let key in items){
             if (items.hasOwnProperty(key)){
                 let item = items[key];
                 if(item.hasError()){
-                    //For Automatically shows Error Items
-                    return;
+                    //Form Automatically shows Error Items
+                    return false;
                 }else{
                     data[key] = item.getValue();
                 }
             }
         }
-        console.log("save",data);
+        return data;
     }
 
+    clearForm(){
+        const  items = this.items;
+        for(let key in items){
+            if (items.hasOwnProperty(key)){
+                let item = items[key];
+                item.clearValue();
+            }
+        }
+    }
 
     createControls() {
         return (
             <div className="btn-group">
-                <button type="button" className="btn btn-default" onClick={this.onSaveButtonClicked.bind(this)}>
+                <button type="button" className="btn btn-default" onClick={this.props.onSaveClicked}>
                     <span className="glyphicon glyphicon-floppy-saved"/>&nbsp;Save
                 </button>
-                <button type="button" className="btn btn-default">
+                <button type="button" className="btn btn-default" onClick={this.clearForm.bind(this)}>
                     <span className="glyphicon glyphicon-refresh"/>&nbsp;Clear
                 </button>
                 {this.props.controls}

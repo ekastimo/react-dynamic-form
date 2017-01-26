@@ -22,6 +22,20 @@ export default class FormItem extends React.Component {
         this.isRequired = this.props.config.isRequired
     }
 
+    setValue(value) {
+        this.setState({
+            value: value,
+            hasError: this.hasErrors(value)
+        });
+    }
+
+    clearValue() {
+        this.setState({
+            value: "",
+            hasError: false
+        });
+    }
+
     getValue() {
         return this.state.value;
     }
@@ -31,7 +45,7 @@ export default class FormItem extends React.Component {
         if (this.isRequired && !this.state.value) {
             errors = true;
         }
-        this.setState({hasError:errors});
+        this.setState({hasError: errors});
         return errors;
     }
 
@@ -102,8 +116,8 @@ export default class FormItem extends React.Component {
                 return (
                     <div className="checkbox" style={err ? errorStyle : {}}>
                         <label className="control-label"><input type="checkbox" name={config.name}
-                                      onChange={this.onValueChanged.bind(this)}
-                                      value={this.state.value}
+                                                                onChange={this.onValueChanged.bind(this)}
+                                                                value={this.state.value}
 
                         />{config.title}</label>
                     </div>
